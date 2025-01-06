@@ -1,4 +1,4 @@
-# HTML中为什么在一些标签如：<select>和<input>标签时，需要用<label>放在前面呢？
+# HTML中为什么在一些标签如：`<select>`和`<input>`标签时，需要用`<label>`放在前面呢？
 
 在HTML中使用`<label>`标签与某些表单元素（如`<input>`和`<select>`）结合有以下几个主要原因：
 

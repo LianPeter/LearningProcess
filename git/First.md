@@ -74,7 +74,7 @@
    ```shell
    cd D:\code
    ```
-   ![alt text](../image/git1.png)
+   ![alt text](../image/git_img/git1.png)
 
 2. **初始化 Git 仓库**
     使用以下命令初始化一个 Git 仓库：
@@ -82,7 +82,7 @@
    ```shell
    git init
    ```
-![alt text](../image/git_init.png)
+![alt text](../image/git_img/git_init.png)
    运行后，当前目录将被初始化为一个 Git 仓库，并生成一个隐藏的 `.git` 文件夹。
 
 ------

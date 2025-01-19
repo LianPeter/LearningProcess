@@ -82,7 +82,7 @@
    ```shell
    git init
    ```
-![alt text](../image/git_img/git_init.png)
+   ![alt text](../image/git_img/git_init.png)
    运行后，当前目录将被初始化为一个 Git 仓库，并生成一个隐藏的 `.git` 文件夹。
 
 ------
@@ -156,6 +156,7 @@ git commit -m "修复登录页面的显示问题"
 >  提交信息应尽量简洁明确，以便于后续代码维护时理解变更的原因。
 
 ## push上仓库
+
 1. 确保你已经在本地仓库中进行了提交：
 2. 将本地更改推送到远程仓库：
  ```shell
@@ -165,3 +166,56 @@ git commit -m "修复登录页面的显示问题"
 ```shell
 git push origin main
 ```
+
+## 创建一个Releases
+
+### 方式1
+
+#### 1. 创建一个标签（Tag）
+
+Release 通常通过标签（Tag）来标记，标签是 Git 中的一种指向特定提交的引用。
+
+首先，确保你的工作区干净，所有修改已经提交：
+
+```bash
+git status
+```
+
+然后，创建一个标签。你可以使用以下命令来创建一个新的标签：
+
+```bash
+git tag -a v1.0 -m "First release"
+```
+
+其中：
+
+- `v1.0` 是你为这个版本定义的标签名（可以根据版本号来命名）。
+- `-m "First release"` 是对这个版本的描述信息。
+
+#### 2. 推送标签到远程仓库
+
+创建完标签后，你需要将标签推送到远程仓库：
+
+```bash
+git push origin v1.0
+```
+
+如果你想推送所有标签，可以使用：
+
+```bash
+git push origin --tags
+```
+
+### 方式2
+
+####  在 GitHub 上创建 Release（如果使用 GitHub）
+
+如果你将代码托管在 GitHub 上，还可以通过 GitHub 界面来创建 Release。步骤如下：
+
+1. 登录到 GitHub 并进入你的仓库页面。
+2. 点击页面上方的 **"Releases"** 选项卡。
+3. 点击 **"Draft a new release"** 按钮。
+4. 在 **Tag version** 处选择刚刚创建的标签（`v1.0`）。
+5. 填写 Release 标题和描述（可以包含新特性、修复的 bug 等信息）。
+6. 点击 **"Publish release"**。
+

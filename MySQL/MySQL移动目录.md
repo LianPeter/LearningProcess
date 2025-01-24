@@ -12,7 +12,6 @@
 
 <font color='red' size=6>操作：</font>
 
-感谢提供信息。下面是详细步骤，将 MySQL 数据目录从 `C:\ProgramData\MySQL\MySQL Server 8.0\Data\` 迁移到 E 盘。
 
 ### 步骤 1：停止 MySQL 服务
 

@@ -29,6 +29,7 @@ README文档：
 
 
 stirling-pdf十分人性化，有提供[网页版本](https://www.stirlingpdf.com/)，只要拖动文件到网页，就可以快速处理pdf，速度可比一些付费软件快多了（大家可以去试试），另外，他也提供了pdf合并加密、添加水印、签名、OCR等很多功能（网站也可以实现），是不是非常神奇！
+
 ![img](../image/github_img/Stirling-pdf.png)
 
 这样对比下来，可是比一些软件的收费而且处理速度慢 良心多了。

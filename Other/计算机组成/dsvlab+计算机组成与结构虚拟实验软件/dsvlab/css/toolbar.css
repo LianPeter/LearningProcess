@@ -1,0 +1,10 @@
+﻿.toolbutton {
+    border-style: solid;
+    border-color:#DDDDDD;
+    border-width: 1px;
+}
+
+#toolbar {
+    background:#DDDDDD;
+    height:36px;
+}

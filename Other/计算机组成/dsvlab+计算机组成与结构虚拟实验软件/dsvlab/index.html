@@ -1,0 +1,303 @@
+<!doctype html>
+<html xmlns:v="urn:schemas-microsoft-com:vml" >
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" >
+        <meta charset="UTF-8">
+
+        <title>多思计组原理虚拟实验室</title>
+        <link rel="shortcut icon" href="dolphin.png" type="image/x-icon" />
+        <link rel="stylesheet" href="./css/flowchart.css">
+        <link rel="stylesheet" href="./css/menu.css">
+        <link rel="stylesheet" href="./css/jquery-ui.css" />
+        <link rel="stylesheet" href="./css/toolbox.css" />
+        <link rel="stylesheet" href="./css/toolbar.css" />
+        <link rel="stylesheet" href="./css/colorpicker.css" />
+
+        <script type='text/javascript' src='./js/lib/jquery.js'></script>
+        <script type='text/javascript' src='./js/lib/jqueryui1102.js'></script>
+        <script type="text/javascript" src="./js/lib/colorpicker.min.js"></script>
+        <script type='text/javascript' src='./js/lib.js'></script>
+        <script type="text/javascript" src="./js/fileoperation.js"></script>
+        <script type='text/javascript' src='./js/menu.js'></script>
+        <script type='text/javascript' src='./js/toolbar.js'></script>
+        <script type='text/javascript' src='./js/toolbox.js'></script>
+        <script type='text/javascript' src='./js/makedrag.js'></script>
+        <script type="text/javascript" src="./js/circuitdiagram.js"></script>
+        <script type="text/javascript" src="./js/dispatch.js"></script>
+        <script type='text/javascript' src='./js/component/74ls181.js'></script>
+        <script type='text/javascript' src='./js/component/74ls245.js'></script>
+        <script type='text/javascript' src='./js/component/74ls273.js'></script>
+        <script type='text/javascript' src='./js/component/led.js'></script>
+        <script type='text/javascript' src='./js/component/switch.js'></script>
+        <script type='text/javascript' src='./js/component/SinglePulse.js'></script>
+        <script type='text/javascript' src='./js/component/ContinuousPulse.js'></script>
+        <script type='text/javascript' src='./js/component/gateCircuit.js'></script>
+        <script type='text/javascript' src='./js/component/ram6116.js'></script>
+        <script type='text/javascript' src='./js/component/74ls174.js'></script>
+        <script type='text/javascript' src='./js/component/74ls175.js'></script>
+        <script type='text/javascript' src='./js/component/eprom2716c3.js'></script>
+        <script type='text/javascript' src='./js/component/eprom2716c4.js'></script>
+        <script type='text/javascript' src='./js/component/74ls139.js'></script>
+        <script type='text/javascript' src='./js/component/SequeTimer.js'></script>
+        <script type='text/javascript' src='./js/component/74ls374.js'></script>
+        <script type='text/javascript' src='./js/component/74ls163.js'></script>
+        <script type='text/javascript' src='./js/component/bus.js'></script>
+        <script type='text/javascript' src='./js/component/floatLabel.js'></script>
+
+        <script type='text/javascript'>
+            $(window).load(function () {
+
+                document.onselectstart = function () {
+                    return false;
+                };
+                <!--document.oncontextmenu = function () {-->
+                        <!--return false;-->
+                        <!--};-->
+
+                //初始化菜单、工具栏和工具箱
+                menuInit();
+                toolbarInit();
+                mytoolbox = new toolbox();
+
+                mycircuit = new Circuit();
+                init_cpdlg();
+                cDispatch = new Dispatch(mycircuit);
+
+                var compDiv = document.createElement("div");
+                compDiv.id = "canvas_div";
+                compDiv.style.position = "absolute";
+                compDiv.style.left = "0px";
+                compDiv.style.top = "0px";
+                compDiv.style.width = "1920px"
+                compDiv.style.height = "1080px"
+                compDiv.style.zIndex = -1;
+                $("#workspace").append(compDiv);
+
+                g_svg_ns = "http://www.w3.org/2000/svg"
+                var svg = document.createElementNS(g_svg_ns, "svg");
+                svg.setAttribute("width", "1920px");
+                svg.setAttribute("height", "1080px");
+                svg.id = "canvas";
+                compDiv.appendChild(svg)
+
+                var defs = document.createElementNS(g_svg_ns, "defs");
+                svg.appendChild(defs)
+
+                var marker = document.createElementNS(g_svg_ns, "marker");
+                marker.id = "arrowhead";
+                marker.setAttribute("markerWidth", "7");
+                marker.setAttribute("markerHeight", "6");
+                marker.setAttribute("refX", "0");
+                marker.setAttribute("refY", "3");
+                marker.setAttribute("orient", "auto");
+
+                var polygon = document.createElementNS(g_svg_ns, "polygon");
+                polygon.setAttribute("points", "6 3, 0 1, 0 5");
+                polygon.setAttribute("stroke", mycircuit.linecolor);
+                polygon.setAttribute("fill", mycircuit.linecolor);
+                marker.appendChild(polygon)
+
+                defs.appendChild(marker)
+            });
+        </script>
+
+    </head>
+
+    <body>
+
+        <div id="menu">
+            <ul id="navmenu">
+                <li><a href="#">文件</a>
+                    <ul>
+                        <li><a href="#" id="newfile">新建</a></li>
+                        <li><a href="#" id="opener">打开</a></li>
+                        <li><a href="#" id="download">保存</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">运行</a>
+                    <ul>
+                        <li><a href="#" id="poweron">开电源</a></li>
+                        <li><a href="#" id="poweroff">关电源</a></li>
+                        <li><a href="#" id="powerreset">重启</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">工具</a>
+                    <ul>
+                        <li><a href="#" id="memsetmenu">存储器芯片设置</a></li>
+                        <li><a href="#"  id="colorpickermenu">连接线颜色设置</a></li>
+                        <li><a href="#" id="clockcycle">时钟周期设置</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">实验指导</a>
+                    <ul>
+                        <li><a href="#" onclick="window.open('experimentguidance.html')" >实验指导书</a>
+                        </li>
+                        <li><a href="#" onclick="window.open('chipdatasheet.html')" >实验器件资料</a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#">帮助</a>
+                    <ul>
+                        <li><a href="./files/help.pdf"  target="_blank">查看帮助</a></li>
+                        <li><a href="#"  id="about">关于虚拟实验室</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div id="toolbar">
+            <img id="open" class="toolbutton" title="打开文件" src="./img/open.png" alt="open" />
+            <img id="save" class="toolbutton" title="保存文件" src="./img/save.png" alt="save" />
+            <img id="new" class="toolbutton" title="清空工作区" src="./img/new.png" alt="new" />
+            <img id="power" class="toolbutton" title="开启/关闭电源" src="./img/poweroff.png" alt="power" />
+            <img id="reset" class="toolbutton" title="重启电源" src="./img/reset.png" alt="reset" />
+            <img id="tools" class="toolbutton" title="打开/收起器件列表" src="./img/tools.png" alt="tools" />
+            <img id="alignx" class="toolbutton" title="垂直吸附" src="./img/align_vertical.png" alt="aligny" />
+            <img id="aligny" class="toolbutton" title="水平吸附" src="./img/align_horizontal.png" alt="alignx" />
+            <img id="moveleft" class="toolbutton" title="整体左移" src="./img/move_left.png" alt="moveleft" />
+            <img id="moveright" class="toolbutton" title="整体右移" src="./img/move_right.png" alt="moveright" />
+            <img id="moveup" class="toolbutton" title="整体上移" src="./img/move_up.png" alt="moveup" />
+            <img id="movedown" class="toolbutton" title="整体下移" src="./img/move_down.png" alt="movedown" />
+        </div>
+
+        <div id="toolbox"  class="toolbox">
+            <h1 class="ui-widget-header">实验设备列表</h1>
+            <div id="accordion-resizer" class="ui-widget-content">
+                <div id="accordion">
+                    <h3>数字功能器件</h3>
+                    <div>
+                        <ul>
+                            <li class ="compmodel" title="4位运算器">74LS181</li>
+                            <li class ="compmodel" title="8位三态门">74LS245</li>
+                            <li class ="compmodel" title="4位锁存器">74LS175</li>
+                            <li class ="compmodel" title="6位触发器">74LS174</li>
+                            <li class ="compmodel" title="8位锁存器">74LS273</li>
+                            <li class ="compmodel" title="2Kx8存储器">RAM6116</li>
+                            <li class ="compmodel" title="2:4译码器">74LS139</li>
+                            <li class ="compmodel" title="8位触发器">74LS374</li>
+                            <li class ="compmodel" title="4位计数器">74LS163</li>
+                        </ul>
+                    </div>
+                    <h3>逻辑门电路</h3>
+                    <div>
+                        <ul>
+                            <li class ="compmodel" title="与门">ANDgate</li>
+                            <li class ="compmodel" title="或门">ORgate</li>
+                            <li class ="compmodel" title="非门">NOTgate</li>
+                            <li class ="compmodel" title="与非门">NANDgate</li>
+                            <li class ="compmodel" title="异或门">XORgate</li>
+                            <li class ="compmodel" title="三态门">Triplegate</li>
+                        </ul>
+                    </div>
+                    <h3>基本元件</h3>
+                    <div>
+                        <ul>
+                            <li class ="compmodel" title="开关">Switch</li>
+                            <li class ="compmodel" title="指示灯">Led</li>
+                            <li class ="compmodel" title="单脉冲发生器">SinglePulse</li>
+                            <li class ="compmodel" title="连续脉冲发生器">ContinuousPulse</li>
+                        </ul>
+                    </div>
+                    <h3>虚拟组件</h3>
+                    <div>
+                        <ul>
+                            <li class ="compmodel" title="2Kx24 EPROM">EPROM2716C3</li>
+                            <li class ="compmodel" title="2Kx32 EPROM">EPROM2716C4</li>
+                            <li class ="compmodel" title="时钟发生器">SequeTimer</li>
+                            <li class ="compmodel" title="总线">BUS</li>
+                            <li class ="compmodel" title="文字标记">Label</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="workspace">
+            <div style="position:absolute;left:0px;top:0;z-index:-3000">
+                <svg width="1920px" height="1080px" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                    <pattern id="smallGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+                    <path d="M 10 0 L 0 0 0 10" fill="none" stroke="gray" stroke-width="0.5"></path>
+                    </pattern>
+                    <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
+                    <rect width="100" height="100" fill="url(#smallGrid)"></rect>
+                    <path d="M 100 0 L 0 0 0 100" fill="none" stroke="gray" stroke-width="1"></path>
+                    </pattern>
+                    </defs>
+
+                    <rect id="gridbg" width="100%" height="100%" fill="url(#grid)" ></rect>
+                </svg>
+            </div>
+        </div>
+
+        <div id="cpdlg" title="Pin Value" style="display:none">
+            <div id="cpinfo">
+            </div>
+        </div>
+
+        <div id="clockdlg" title="Clock Cycle" style="display:none">
+            <br />
+            <br />
+            <div id="clocksld"></div>
+        </div>
+
+        <div id="colordlg" title="Color Picker" style="display:none">
+            <br />
+            <br />
+            <div id="colorpicker-prefix" class="cp-default"></div>
+            <div id="colorpicker" style="width: 130px; height: 80px;border:2px solid white;position:absolute;left:330px;top:80px"></div>
+        </div>
+
+        <div id="readdlg" title="File Reader" style="display:none">
+            <br />
+            <br />
+            <input type="file" id="fileSelector" style="display: none"/> <!-- By design, if you select the exact same files two or more times, the 'change' event will not fire. -->
+            <ul id="fileContentList" style="list-style-type: none;"></ul> <!-- This will be populated with <li> elements via JavaScript. -->
+        </div>
+
+        <div id="writedlg" title="File Writer" align="center" style="display:none">
+            <br>
+            <br>
+            <output id="output">
+                <a id="downloadanchor" download="circuit.txt" href="./circuit.txt" draggable="true" class="dragout">下载链接</a>
+            </output>
+        </div>
+
+        <div id="memsetdlg" title="Memory Set" align="center" style="display:none">
+            <p>&nbsp;</p>
+            <p style="height: 10; color:#142256">
+            <select id="Select1" name="D1" width="170px" height="23px">
+                <option>请选择要读写的芯片</option>
+            </select>
+            <div style="text-align: center">
+                <textarea id="TextArea1" name="S1" rows="16" cols="32" style="font-size:14px"></textarea>
+            </div>
+        </div>
+
+        <div id="tipdlg" title="提示" style="display:none">
+            <div id="tip">
+                默认提示内容
+            </div>
+        </div>
+
+        <div id="testdlg" title="测试专用对话框" style="display:none">
+            <div id="filediv">
+                <input type="file" id="testfile"/>
+            </div>
+            <div id="testcontent">
+            </div>
+        </div>
+
+        <div id="aboutdlg" title="About DS-VLAB">
+            <div id=c1><img src="./img/dolphin150.png" height="80" width="80" /></div>
+            <div id=c2><p style = "line-height:0.5;font-size:18px">DS-VLAB v2.1</p></div>
+            <p>
+            Developers <br> Zhao Na&lt;zhn003@163.com&gt;
+            </p>
+            <p>
+            version 1.0 <br> Developers <br> Zhang Wenfen&lt;yydzhwf@163.com&gt;
+            </p>
+            <p>本程序为自由软件，您可依据GNU GENERAL PUBLIC LICENSE，对本程序再次发布和/或修改</p>
+            <p>This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation.</p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+﻿#toolbox {
+    position:absolute;
+    left:0.5em;
+    top:10em;  	
+    z-index:6000;
+    visibility:hidden;
+}
+#accordion-resizer {
+    padding: 10px;
+    width: 200px;
+    height: 450px;
+}
+h1 {
+    margin: 0;
+    font-size: 0.8em;
+    cursor: move;
+    text-align:center;
+    line-Height:25px;
+}
+
+.compmodel {
+    cursor: default;
+    z-index:6001;
+    margin-bottom:4px;
+}

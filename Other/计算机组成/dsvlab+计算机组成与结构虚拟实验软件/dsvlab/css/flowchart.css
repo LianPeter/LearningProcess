@@ -1,0 +1,92 @@
+.window { 
+    border:1px solid #346789;
+    box-shadow: 2px 2px 19px #aaa;
+    -o-box-shadow: 2px 2px 19px #aaa;
+    -webkit-box-shadow: 2px 2px 19px #aaa;
+    -moz-box-shadow: 2px 2px 19px #aaa;
+    -moz-border-radius:0.5em;
+    border-radius:0.5em;
+    opacity:0.8;
+    filter:alpha(opacity=80);
+    text-align:center;
+    position:absolute;
+    background-color:#eeeeef;
+    color:black;
+    font-family:helvetica;
+    font-size:0.9em;
+    cursor:default;
+}
+
+.windowInvisible { 
+    border:none;
+    opacity:0.8;
+    filter:alpha(opacity=80);
+    text-align:center;
+    position:absolute;
+    background-color:rgba(0,0,0,0.2)
+    color:black;
+    font-family:helvetica;
+    font-size:0.9em;
+    cursor:default;
+    white-space:nowrap;
+}
+
+.window:hover {
+    box-shadow: 2px 2px 19px #444;
+    -o-box-shadow: 2px 2px 19px #444;
+    -webkit-box-shadow: 2px 2px 19px #444;
+    -moz-box-shadow: 2px 2px 19px #444;
+    opacity:0.6;
+    filter:alpha(opacity=60);
+}
+
+.pin {
+    padding-top: 1px;
+    /*padding-bottom:1px;*/
+    position:absolute;
+    text-align:center;
+    line-Height:10px;
+    font-size:0.6em;
+    cursor:default;
+    -moz-user-select: none;
+    font-family:'SimSun';/*:;Bell Gothic Std*/
+    white-space: nowrap
+    /*letter-spacing:0px;*/
+}
+.pin:hover{
+    background-color:yellowgreen
+}
+
+#workspace {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+.window2 { 
+    border:1px solid #346789;
+    position:absolute;
+}
+
+table, td, th {
+    border: 1px solid black;
+}
+
+th,td {
+    text-align: center;
+}
+
+#tipdlg {
+    position: relative;
+    background: transparent;
+}
+
+#tip {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background: transparent;
+}

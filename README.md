@@ -22,6 +22,7 @@ LEARNINGPROCESS
 ├── Github                  # 好项目都在这 ⭐
 ├── Go                      # Go语言天地 🏃
 ├── image                   # 图片资源 🖼️
+├── Java                    # Java_code 👌
 ├── MySQL                   # MySQL秘籍 🗄️
 ├── Other                   # 杂七杂八但很有用 🎯
 ├── Python                  # Python的世界 🐍

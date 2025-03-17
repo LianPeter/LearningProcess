@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="FlyBird:jar">
+    <output-path>$PROJECT_DIR$/../../flyjar</output-path>
+    <root id="archive" name="FlyBird.jar">
+      <element id="module-output" name="FlyBird" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/javazoom/jlayer/1.0.1/jlayer-1.0.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

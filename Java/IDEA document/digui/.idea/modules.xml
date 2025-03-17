@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Studentmanager/Studentmanager.iml" filepath="$PROJECT_DIR$/Studentmanager/Studentmanager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/digui.iml" filepath="$PROJECT_DIR$/digui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/digui1/digui1.iml" filepath="$PROJECT_DIR$/digui1/digui1.iml" />
+    </modules>
+  </component>
+</project>

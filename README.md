@@ -11,7 +11,7 @@
 - **Python** 🐍：数据处理、自动化脚本样样都行
 - **前端开发** 🎨：HTML、CSS、JavaScript，还有各种框架
 - **GitHub优质项目推荐**💻：GitHub优质项目推荐，确定不驻足一下吗？
-
+- **Linux**🧧：Linux的各种小碎片
 ## 目录结构 📂
 
 ```
@@ -23,6 +23,7 @@ LEARNINGPROCESS
 ├── Go                      # Go语言天地 🏃
 ├── image                   # 图片资源 🖼️
 ├── Java                    # Java_code 👌
+├── Linux                    # Linux 🧧
 ├── MySQL                   # MySQL秘籍 🗄️
 ├── Other                   # 杂七杂八但很有用 🎯
 ├── Python                  # Python的世界 🐍

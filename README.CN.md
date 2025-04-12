@@ -1,6 +1,6 @@
 # LearningProcess
 
-中文 | English
+[中文](README.CN.md) | [English](README.md)
 
 ---
 

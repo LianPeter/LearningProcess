@@ -1,7 +1,3 @@
-当然可以！以下是你提供的 `README` 内容的英文翻译版本，保持了原文的结构、语气简洁清晰、语义准确，适合国际开源社区使用：
-
----
-
 # LearningProcess
 
 [中文](README.CN.md) | [English](README.md)

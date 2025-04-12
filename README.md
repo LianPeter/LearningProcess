@@ -3,6 +3,9 @@
 [中文](README.CN.md) | [English](README.md)
 
 ---
+Personal Project: [dnslog_for_go](https://github.com/LianPeter/dnslog_for_go)
+
+---
 
 ## Project Overview
 
